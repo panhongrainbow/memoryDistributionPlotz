@@ -1,0 +1,93 @@
+/*
+    This is a visual representation of a stack frame and function body in the form of a directed graph (digraph).
+*/
+
+// Starts the digraph with the name "G".
+digraph G {
+    // Sets the direction of the graph to be from top to bottom
+    rankdir=TB;
+    // Sets the default style for all nodes in the graph to be a record shape (for displaying multiple fields) with the font "Courier New"
+    node [shape=record, fontname="Courier New"];
+    // Starts a subgraph named "cluster_0" which will contain the stack frame nodes
+    subgraph cluster_0 {
+        // Sets the label for the subgraph to "stack frame"
+        label="stack frame";
+        // Sets the style for all nodes in the subgraph to be filled with the color light gray
+        node [style=filled, fillcolor=lightgray];
+        /*
+            Creates a node named "locals" with three record fields: "ret_addr", "saved_ebp", and "local_vars"
+            The fields are displayed vertically and have a height of 1.5 units
+        */
+        locals [label="{<ret_addr>ret_addr|<saved_ebp>saved_ebp|<local_vars>local_vars}", height=1.5];
+    }
+    
+    // Sets the default style for all nodes to be filled with the color white
+    node [style=filled, fillcolor=white];
+    /*
+        Creates a node named "params" with three record fields: "param1", "param2", and "param3"
+        The fields are displayed vertically and have a height of 1.5 units
+    */
+    params [label="{param1|param2|param3}", height=1.5];
+    
+    // Sets the default style for all nodes to be filled with the color light blue
+    node [style=filled, fillcolor=lightblue];
+    // Creates a node named "eax" with a label of "eax" and a height of 1.5 units
+    eax [label="eax", height=1.5];
+    // Creates a node named "ecx" with a label of "ecx" and a height of 1.5 units
+    ecx [label="ecx", height=1.5];
+    // Creates a node named "edx" with a label of "edx" and a height of 1.5 units
+    edx [label="edx", height=1.5];
+    
+    // This line sets the default style for all nodes to be filled with the color light green
+    node [style=filled, fillcolor=lightgreen];
+    // Creates a node named "ebp" with a label of "ebp" and a height of 1.5 units
+    ebp [label="ebp", height=1.5];
+    // Creates a node named "esp" with a label of "esp" and a height of 1.5 units
+    esp [label="esp", height=1.5];
+    
+    /*
+        Creates a node named "eax" with a label of "eax" and a height of 1.5 units
+    */
+    // Creates a directed edge from the "params" node to the "eax" node
+    params -> eax;
+    // Creates a directed edge from the "params" node to the "ecx" node
+    params -> ecx;
+    // Creates a directed edge from the "params" node to the "edx" node
+    params -> edx;
+
+    // Creates a directed edge from the "eax" node to the "locals" node
+    eax -> locals;
+    // Creates a directed edge from the "ecx" node to the "locals" node
+    ecx -> locals;
+    // Creates a directed edge from the "edx" node to the "locals" node
+    edx -> locals;
+    
+    // Starts a subgraph named "cluster_1" which will contain the function bodies
+    subgraph cluster_1 {
+    // Define the label of the cluster subgraph as "function body"
+        label="function body";
+        
+        // Define the style of all nodes in the subgraph as filled with white color
+        node [style=filled, fillcolor=white];
+        // Define a node named "instructions" with a label "instructions" and a height of 1.5
+        instructions [label="instructions", height=1.5];
+    }
+    
+    // Create a directed edge from the "locals" node to the "ebp" node
+    locals -> ebp;
+    // Create a directed edge from the "ebp" node to the "saved_ebp" node
+    ebp -> saved_ebp;
+    // Create a directed edge from the "saved_ebp" node to the "esp" node
+    saved_ebp -> esp;
+    
+    // Create a directed edge from the "esp" node to the "instructions" node
+    esp -> instructions;
+    // Create a directed edge from the "instructions" node to the "eax" node
+    instructions -> eax;
+    // Create a directed edge from the "instructions" node to the "ecx" node
+    instructions -> ecx;
+    // Create a directed edge from the "instructions" node to the "edx" node
+    instructions -> edx;
+    // Create a directed edge from the "instructions" node to the "ebp" node
+    instructions -> ebp;
+}
