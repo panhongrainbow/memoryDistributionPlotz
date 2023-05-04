@@ -1,0 +1,11 @@
+digraph SubRoadmap {
+    // (4) cluster node
+    node [shape=record, fontname="Courier New"];
+    subgraph cluster_trangle {
+        label="mongodb pattern";
+        node [style=filled];
+        trangle [label="{
+            <demo>demo
+            }", height=0.5];
+    }
+/*end*/}

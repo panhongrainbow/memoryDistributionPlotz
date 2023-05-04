@@ -1,0 +1,5 @@
+digraph SubRoadmap {
+    // (5) link
+    LiHuaImageNode -> trangleImageNode [style=dashed];
+    trangleImageNode -> trangle [style=dashed];
+/*end*/}

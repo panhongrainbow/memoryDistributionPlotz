@@ -1,0 +1,4 @@
+digraph SubRoadmap {
+    // (3) image node
+    trangleImageNode [label="", image="assets/trangle.png", width=0.01, height=0.01];
+/*end*/}

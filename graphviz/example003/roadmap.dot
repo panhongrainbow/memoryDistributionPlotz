@@ -1,0 +1,19 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box];
+
+    LiHuaImageNode [label="", image="assets/Li-Hua.png", width=0.01, height=0.01];
+    trangleImageNode [label="", image="assets/trangle.png", width=0.01, height=0.01];
+
+    node [shape=record, fontname="Courier New"];
+    subgraph cluster_trangle {
+        label="mongodb pattern";
+        node [style=filled];
+        trangle [label="{
+            <demo>demo
+            }", height=0.5];
+    }
+
+    LiHuaImageNode -> trangleImageNode [style=dashed];
+    trangleImageNode -> trangle [style=dashed];
+}
